@@ -3,52 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instant Bio Magic</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>InstaBio AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
     <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f8f9fa; margin: 0; }
-        .container { background-color: #ffffff; padding: 2.5rem; border-radius: 0.8rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 550px; width: 95%; text-align: center; }
-        h1 { color: #343a40; margin-bottom: 1.5rem; font-size: 2rem; }
-        p { color: #6c757d; margin-bottom: 2rem; }
-        label { font-weight: bold; margin-bottom: 0.5rem; display: block; text-align: left; }
-        input[type="text"] { border-radius: 0.5rem; padding: 0.75rem; border: 1px solid #ced4da; width: 100%; margin-bottom: 1.5rem; box-sizing: border-box; }
-        button { background-color: #007bff; color: white; padding: 0.8rem 1.5rem; border: none; border-radius: 0.5rem; cursor: pointer; font-size: 1.1rem; transition: background-color 0.3s ease; width: 100%; }
-        button:hover { background-color: #0056b3; }
-        #bioOutput { margin-top: 2rem; text-align: left; padding: 1rem; background-color: #e9ecef; border-radius: 0.5rem; min-height: 80px; white-space: pre-wrap; word-wrap: break-word; color: #343a40; font-size: 1rem; }
-        .price-tag { font-size: 1.2rem; font-weight: bold; color: #28a745; margin-bottom: 1rem; }
+        body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>Instant Bio Magic ✨</h1>
-        <p class="price-tag">Get it for just $2.99!</p>
-        <p>Craft your perfect Instagram bio in seconds with AI. Just tell us about yourself!</p>
-        <form id="bioForm">
-            <div class="form-group">
-                <label for="keywords">Keywords (e.g., photographer, traveler, foodie):</label>
-                <input type="text" class="form-control" id="keywords" placeholder="Enter keywords separated by commas">
+<body class="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white p-8 rounded-lg shadow-xl max-w-md w-full text-center">
+        <h1 class="text-4xl font-bold text-gray-800 mb-4">InstaBio AI</h1>
+        <p class="text-gray-600 mb-6">Craft your perfect Instagram bio instantly!</p>
+        <form id="bioForm" class="space-y-4">
+            <div>
+                <input type="text" id="keywords" placeholder="Keywords (e.g., travel, food)" class="w-full p-3 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500">
             </div>
-            <button type="submit" class="btn btn-primary">Generate Bio</button>
+            <div>
+                <select id="tone" class="w-full p-3 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500">
+                    <option value="">Select Tone</option>
+                    <option value="professional">Professional</option>
+                    <option value="funny">Funny</option>
+                    <option value="inspirational">Inspirational</option>
+                    <option value="casual">Casual</option>
+                </select>
+            </div>
+            <button type="submit" class="w-full bg-purple-600 text-white p-3 rounded-md hover:bg-purple-700 transition duration-300">
+                Generate Bio
+            </button>
         </form>
-        <div id="bioOutput" class="mt-4">Your generated bio will appear here!</div>
+        <div id="result" class="mt-6 p-4 bg-gray-100 rounded-md text-gray-800 text-left hidden">
+            <h2 class="font-semibold text-lg mb-2">Your New Bio:</h2>
+            <p id="bioOutput"></p>
+        </div>
+        <p class="mt-6 text-sm text-gray-500">Powered by AI. ✨</p>
     </div>
     <script>
-        document.getElementById('bioForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
+        document.getElementById('bioForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
             const keywords = document.getElementById('keywords').value;
-            const outputDiv = document.getElementById('bioOutput');
-            outputDiv.innerHTML = 'Generating your awesome bio...';
+            const tone = document.getElementById('tone').value;
+            const bioOutput = document.getElementById('bioOutput');
+            const resultDiv = document.getElementById('result');
+            
+            bioOutput.textContent = 'Generating...';
+            resultDiv.classList.remove('hidden');
 
-            // In a real app, this would call an API endpoint after successful payment.
-            // For this MVP, we'll simulate a response.
+            // In a real app, this would be an API call to your backend.
+            // For this example, we'll simulate a response.
             setTimeout(() => {
-                if (keywords.includes('photographer') && keywords.includes('traveler')) {
-                    outputDiv.innerHTML = "📸 World-traveling photographer. Capturing moments, one adventure at a time. Let's connect! ✈️";
-                } else if (keywords.includes('developer') && keywords.includes('code')) {
-                    outputDiv.innerHTML = "Building the future, one line of code at a time. 💻 Passionate about tech & innovation. Always learning! ✨";
-                } else {
-                    outputDiv.innerHTML = `🌟 ${keywords.split(',').map(k => k.trim()).filter(Boolean).map(k => '#' + k).join(' ')} 🌟 | Living my best life. Let's connect!`;
-                }
+                const generatedBio = `👋 Hi there! ${tone ? `I'm a ${tone}` : 'I am'} obsessed with ${keywords || 'life'}. Let's connect!`;
+                bioOutput.textContent = generatedBio;
             }, 1500);
         });
     </script>
