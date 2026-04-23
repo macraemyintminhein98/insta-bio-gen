@@ -1,14 +1,19 @@
-# Instant Bio Magic ✨
+# InstaBio AI
 
-**Craft your perfect Instagram bio in seconds with AI.**
+InstaBio AI is an AI-powered Instagram bio generator that helps you create creative and catchy bios in seconds. Simply input some keywords and choose a tone, and let AI do the rest!
 
-Simply enter keywords that describe you (e.g., 'photographer', 'traveler', 'developer'), and our AI-powered tool will generate creative and effective bio options instantly. 
+## Features 
+- Generate custom bios based on keywords.
+- Select from various tones (e.g., professional, funny, inspirational).
+- Clean and intuitive user interface.
 
-No more struggling to find the right words! Improve your Instagram presence easily and quickly.
+## How to Use
+1. Enter relevant keywords about yourself or your brand.
+2. Choose your desired tone.
+3. Click 'Generate Bio' and get instant results!
 
-## How it Works:
-1. Enter relevant keywords.
-2. Click 'Generate Bio'.
-3. Get your personalized Instagram bio options!
+## Setup (Local Development)
+1. Clone this repository.
+2. Open `index.html` in your browser.
 
-This simple web app is built with a focus on speed and ease of use, designed to get you the perfect bio without any hassle. Ideal for influencers, small business owners, students, and anyone looking to boost their social media profile.
+*(Note: This is a front-end mock-up. A full implementation would require a backend with an AI model integration.)*
